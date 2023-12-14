@@ -40,10 +40,8 @@ const ColorPicker = ({onChange, createdBy, value, auth, updateEventId}) => {
             {updateEventId ? (
                 <div className="flex items-center gap-x-1">
                     <div className='img-box-4 '>
-                        <img className="mr-1"
-                             src={createdBy?.avatar || "/placeholder.jpg"} alt=""/>
                     </div>
-                    <h4 className="mr-2 text-gray-600 text-sm ">
+                    <h4 className="mr-2 text-sm text-gray-600 ">
                         {fullName(createdBy)} (organizer {createdBy?._id  === auth?._id ? "you" : ""})
                     </h4>
                 </div>
@@ -53,7 +51,7 @@ const ColorPicker = ({onChange, createdBy, value, auth, updateEventId}) => {
                         <img className="mr-1"
                              src={auth?.avatar || "/placeholder.jpg"} alt=""/>
                     </div>
-                    <h4 className="mr-2 text-gray-600 text-sm ">
+                    <h4 className="mr-2 text-sm text-gray-600 ">
                         {fullName(auth)} (organizer)
                     </h4>
                 </div>
@@ -68,10 +66,10 @@ const ColorPicker = ({onChange, createdBy, value, auth, updateEventId}) => {
                 withBg={false}
 
                 render={(onChange) => (
-                    <div className="grid grid-cols-2 justify-between gap-2">
+                    <div className="grid justify-between grid-cols-2 gap-2">
                         {Object.keys(colors).map(colorKey=>(
                             <span onClick={()=>onChange(colorKey)}
-                                  className="w-4 h-4 block rounded-full"
+                                  className="block w-4 h-4 rounded-full"
                                   style={{background: colors[colorKey]}}>
                             </span>
                         ))}
@@ -79,7 +77,7 @@ const ColorPicker = ({onChange, createdBy, value, auth, updateEventId}) => {
                 )}
                 renderPlaceholderValue={(val)=>(
                     <div className="flex items-center">
-                        <span className="w-4 h-4 block rounded-full mr-1" style={{background: colors[val]}}>
+                        <span className="block w-4 h-4 mr-1 rounded-full" style={{background: colors[val]}}>
                         </span>
                         <BiChevronDown />
                     </div>

@@ -107,7 +107,7 @@ const Header = () => {
     let view = params.view || "month"
 
     return (
-        <header className="flex justify-between py-3 px-3 items-center border-b">
+        <header className="flex items-center justify-between px-3 py-3 border-b">
 
             <HiBars3 className="bar-icon" fontSize={20} />
 
@@ -116,19 +116,19 @@ const Header = () => {
                 <Link to="/">
                     <div className="flex items-center gap-x-1 ">
                         <img className="w-10"
-                             src="https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_16_2x.png"
+                             src="https://inmigracionaldia.com/hubfs/raw_assets/public/website-theme/images/Logo-iad.svg"
                              alt=""/>
-                        <h4 className="hidden md:block text-sm font-bold">Calendar</h4>
+                        <h4 className="hidden text-sm font-bold md:block">Calendar</h4>
                     </div>
                 </Link>
-                <div className="col-span-10 flex items-center ml-2 md:ml-6 lg:ml-10 gap-x-1 md:gap-x-4">
+                <div className="flex items-center col-span-10 ml-2 md:ml-6 lg:ml-10 gap-x-1 md:gap-x-4">
                     <button className="btn" onClick={resetDate}>Today</button>
 
                     <div className="flex items-center gap-x-2">
-                        <li className="btn btn-circle list-none text-2xl" onClick={jumpPrevMonth}>
+                        <li className="text-2xl list-none btn btn-circle" onClick={jumpPrevMonth}>
                             <BiChevronLeft/>
                         </li>
-                        <li className="btn btn-circle list-none text-2xl" onClick={jumpNextMonth}>
+                        <li className="text-2xl list-none btn btn-circle" onClick={jumpNextMonth}>
                             <BiChevronRight/>
                         </li>
                     </div>
@@ -147,19 +147,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="flex items-center gap-x-2 md:gap-x-8 col-span-6">
-                <div className="flex items-center gap-x-2 md:gap-x-4   col-span-6">
-                    <li className="list-none text-2xl">
-                        <BiSearch className="text-gray-700"/>
-                    </li>
-
-                    <li className="list-none text-xl">
-                        <BiInfoCircle className="text-gray-700"/>
-                    </li>
-                    <li className="list-none text-xl">
-                        <BsGear className="text-gray-700"/>
-                    </li>
-                </div>
+            <div className="flex items-center col-span-6 gap-x-2 md:gap-x-8">
 
                 <Select
                     withBg={true}
@@ -185,16 +173,16 @@ const Header = () => {
                             <Popup  backdropClass="!bg-transparent" isWithBackdrop={true} onClose={()=>setOpenAuthPopup("")} isOpen={openAuthPopup} className="right-0 shadow-xl user-menu-popup">
                                 <ul className="text-sm">
                                     <li className="flex items-center gap-x-2">
-                                        <Avatar username={authState.auth?.firstName} className="h-8 w-8 rounded-full"
+                                        <Avatar username={authState.auth?.firstName} className="w-8 h-8 rounded-full"
                                                 src={authState.auth?.avatar}/>
                                         <h4>{(authState.auth?.firstName)}</h4>
                                     </li>
-                                    <li className="flex items-center gap-x-2 mt-2 hover:text-white hover:bg-primary transition transition-colors px-2 py-1 rounded cursor-pointer">
+                                    <li className="flex items-center px-2 py-1 mt-2 transition transition-colors rounded cursor-pointer gap-x-2 hover:text-white hover:bg-primary">
                                         <MdDashboard/>
                                         <Link to={`/profile`}>Profile</Link>
                                     </li>
                                     <li onClick={handleLogout}
-                                        className="flex items-center gap-x-2 hover:text-white hover:bg-primary transition transition-colors px-2 py-1 rounded cursor-pointer">
+                                        className="flex items-center px-2 py-1 transition transition-colors rounded cursor-pointer gap-x-2 hover:text-white hover:bg-primary">
                                         <FaSignOutAlt/>
                                         <span className="">Logout</span>
                                     </li>

@@ -8,6 +8,7 @@ import CalendarContext from "../../context/CalendarContext";
 
 import TimeRange from "../TimeRange";
 import ColorPicker from "../ColorPicker/ColorPicker.jsx";
+import LawyerPicker from "../LawyerPicker/LawyerPicker.jsx"
 import AddNotification from "./AddNotification";
 import useAuthContext from "../../context/useAuthContext.js";
 import RichTextEditor from "../Form/RichTextEditor/RichTextEditor.jsx";
@@ -19,6 +20,7 @@ import {RiseLoader} from "react-spinners";
 const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
     const {
         newEventData: {
+            lawyerEvent,
             invitations,
             agenda,
             title,
@@ -73,8 +75,8 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                            value={title}/>
                 </div>
 
-                <div className="event-input-field flex items-start mt-6 ">
-                    <div className="event-label-icon w-12">
+                <div className="flex items-start mt-6 event-input-field ">
+                    <div className="w-12 event-label-icon">
 
                         <img className="w-5" src="/icons/schedule.svg" alt="agenda"/>
 
@@ -87,8 +89,8 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
                 </div>
 
-                <div className="event-input-field flex items-start mt-3">
-                    <div className="event-label-icon w-12">
+                <div className="flex items-start mt-3 event-input-field">
+                    <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/admin-icon.svg" alt="bell"/>
                     </div>
                     <ColorPicker createdBy={createdBy}
@@ -100,20 +102,52 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                 </div>
 
 
-                <div className="event-input-field flex items-start ">
-                    <div className="event-label-icon w-12">
+
+
+
+{/* 
+
+
+
+                <div className="flex items-start mt-3 event-input-field">
+                    <div className="w-12 event-label-icon">
+                        <img className="w-5" src="/icons/admin-icon.svg" alt="bell"/>
+                    </div>
+                    <LawyerPicker createdBy={createdBy}
+                        updateEventId={updateEventId}
+                        auth={authState?.auth || {}}
+                        value={lawyerEvent}
+                        onChange={(selectedLawyer) => handleChange(selectedLawyer, "lawyerEvent")}/>
+
+                </div>
+
+
+
+
+
+ */}
+
+
+
+
+
+
+
+
+                <div className="flex items-start event-input-field ">
+                    <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/users.svg" alt="agenda"/>
                         {/*<FiUsers className="text-gray-600"/>*/}
                     </div>
 
                     <div className="w-full">
-                        <div onClick={() => setModalId(2)} className="hover:bg-gray-100 p-2 rounded-md">
+                        <div onClick={() => setModalId(2)} className="p-2 rounded-md hover:bg-gray-100">
                             <span className="text-sm text-gray-600">Add Invitation</span>
                         </div>
 
                         {/**** selected users ****/}
                         <div onClick={() => setModalId(2)}
-                             className="flex flex-wrap items-center gap-x-0 users-avatar-list mt-1">
+                             className="flex flex-wrap items-center mt-1 gap-x-0 users-avatar-list">
                             {invitations.map(user => (
                                 <div className="user-avatar">
                                     <Avatar src={user.avatar} username={fullName(user)}/>
@@ -124,15 +158,15 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
                 </div>
 
-                <div className="event-input-field flex items-start ">
-                    <div className="event-label-icon w-12">
+                <div className="flex items-start event-input-field ">
+                    <div className="w-12 event-label-icon">
                         <img className="w-4" src="/icons/agenda.svg" alt="agenda"/>
                     </div>
 
 
                     <ClickExpand initialOpen={!!agenda} label={({onPress}) => (
-                        <div onClick={onPress} className="hover:bg-gray-100 p-2 rounded-md">
-                            <span className="text-sm text-gray-600">Event Agenda</span>
+                        <div onClick={onPress} className="p-2 rounded-md hover:bg-gray-100">
+                            <span className="text-sm text-gray-600">Event Description</span>
                         </div>
                     )}>
                         <RichTextEditor
@@ -146,8 +180,8 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
                 </div>
 
-                {/*<div className="event-input-field flex items-start ">*/}
-                {/*    <div className="event-label-icon w-12">*/}
+                {/*<div className="flex items-start event-input-field ">*/}
+                {/*    <div className="w-12 event-label-icon">*/}
                 {/*        <div className="w-5">*/}
                 {/*            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="message">*/}
                 {/*                <path fill="#595bd4"*/}
@@ -159,7 +193,7 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
 
                 {/*    <ClickExpand initialOpen={!!followUp} label={({onPress}) => (*/}
-                {/*        <div onClick={onPress} className="hover:bg-gray-100 p-2 rounded-md">*/}
+                {/*        <div onClick={onPress} className="p-2 rounded-md hover:bg-gray-100">*/}
                 {/*            <span className="text-sm text-gray-600">Follow Up message</span>*/}
                 {/*        </div>*/}
                 {/*    )}>*/}
@@ -171,14 +205,14 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
                 {/*</div>*/}
 
-                {/*<div className="event-input-field flex items-start ">*/}
-                {/*    <div className="event-label-icon w-12">*/}
+                {/*<div className="flex items-start event-input-field ">*/}
+                {/*    <div className="w-12 event-label-icon">*/}
                 {/*        <img className="w-4" src="/icons/action-item.svg" alt="meet"/>*/}
                 {/*    </div>*/}
 
 
                 {/*    <ClickExpand initialOpen={!!actionItems} label={({onPress}) => (*/}
-                {/*        <div onClick={onPress} className="hover:bg-gray-100 p-2 rounded-md">*/}
+                {/*        <div onClick={onPress} className="p-2 rounded-md hover:bg-gray-100">*/}
                 {/*            <span className="text-sm text-gray-600">Action Item</span>*/}
                 {/*        </div>*/}
                 {/*    )}>*/}
@@ -190,14 +224,14 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                 {/*</div>*/}
 
 
-                <div className="event-input-field flex items-start ">
-                    <div className="event-label-icon w-12">
+                <div className="flex items-start event-input-field ">
+                    <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/link.svg" alt="meet"/>
                     </div>
 
 
                     <ClickExpand initialOpen={!!meetingLink} label={({onPress}) => (
-                        <div onClick={onPress} className="hover:bg-gray-100 p-2 rounded-md">
+                        <div onClick={onPress} className="p-2 rounded-md hover:bg-gray-100">
                             <span className="text-sm text-gray-600">Meeting link</span>
                         </div>
                     )}>
@@ -209,13 +243,13 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
                 </div>
 
-                {/*<div className="event-input-field flex items-start mt-3">*/}
-                {/*    <div className="event-label-icon w-12">*/}
+                {/*<div className="flex items-start mt-3 event-input-field">*/}
+                {/*    <div className="w-12 event-label-icon">*/}
                 {/*        <HiBars3BottomLeft className="text-xl text-gray-600"/>*/}
                 {/*    </div>*/}
 
                 {/*    <ClickExpand label={({onPress}) => (*/}
-                {/*        <div onClick={onPress} className="hover:bg-gray-100 p-2 rounded-md">*/}
+                {/*        <div onClick={onPress} className="p-2 rounded-md hover:bg-gray-100">*/}
                 {/*            <span className="text-sm text-gray-600">Description</span>*/}
                 {/*        </div>*/}
                 {/*    )}>*/}
@@ -223,8 +257,8 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                 {/*    </ClickExpand>*/}
                 {/*</div>*/}
 
-                <div className="event-input-field flex items-start ">
-                    <div className="event-label-icon w-12">
+                <div className="flex items-start event-input-field ">
+                    <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/bell.svg" alt="bell"/>
                     </div>
 
@@ -238,7 +272,7 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                     </ClickExpand>
 
 
-                    {/*<div className="hover:bg-gray-100 p-2 rounded-md">*/}
+                    {/*<div className="p-2 rounded-md hover:bg-gray-100">*/}
                     {/*    <span className="text-sm text-gray-600">Add Notification</span>*/}
                     {/*</div>*/}
                 </div>
@@ -247,7 +281,7 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                     <button onClick={handleSaveEvent} className={`btn ${isLoading ? "btn-disable" : "btn-primary"}`}>
                         {isLoading && <div className="flex items-center ">
                             <RiseLoader size={5} color="#2c65ec"/>
-                            <span className="text-sm ml-2">Please Wait</span>
+                            <span className="ml-2 text-sm">Please Wait</span>
                         </div>}
                         {!isLoading && (updateEventId ? "Update" : "Add")}
 

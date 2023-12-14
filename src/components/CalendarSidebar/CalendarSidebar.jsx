@@ -124,23 +124,23 @@ const CalendarSidebar = (props) => {
 
     return (
         <div className="sidebar">
-            <div className="calendar-page relative">
-                <button className="btn flex items-center  mt-4 add-new-btn"
+            <div className="relative calendar-page">
+                <button className="flex items-center mt-4 btn add-new-btn"
                         onClick={() => openAddNewEventModal("event")}>
                     <BiPlus className="text-xl text-primary" />
-                    <span className="mr-4 font-medium text-sm">New Event</span>
+                    <span className="mr-4 text-sm font-medium">New Event</span>
                 </button>
 
 
-                <Popup className="rounded-lg px-0 py-1 absloute w-40 left-0 top-14"
+                <Popup className="left-0 w-40 px-0 py-1 rounded-lg absloute top-14"
                        onClose={() => setOpenChooseEventModal(false)}
                        isOpen={isOpenChooseEventModal}>
                     <div>
                         <li onClick={() => openAddNewEventModal("event")}
-                            className="text-sm cursor-pointer list-none hover:bg-gray-100 py-2 px-2">Event
+                            className="px-2 py-2 text-sm list-none cursor-pointer hover:bg-gray-100">Event
                         </li>
                         <li onClick={() => openAddNewEventModal("task")}
-                            className="text-sm cursor-pointer list-none hover:bg-gray-100 py-2 px-2">Task
+                            className="px-2 py-2 text-sm list-none cursor-pointer hover:bg-gray-100">Task
                         </li>
                     </div>
                 </Popup>
@@ -159,7 +159,7 @@ const CalendarSidebar = (props) => {
                         dataId={1}
                         header={(isOpen) => (
                             <div
-                                className="accordion-header flex items-center justify-between"
+                                className="flex items-center justify-between accordion-header"
                                 onClick={() => handleToggle(1)}>
 
                                 <h4 className="">My Calendar</h4>
@@ -177,7 +177,7 @@ const CalendarSidebar = (props) => {
                             {/*        <h4 className="flex items-center">*/}
                             {/*            <div className="col-span-1">*/}
                             {/*                <div style={{background:  colors[evt.eventColor] || statusColors[evt.status]}}*/}
-                            {/*                     className="w-3 h-3 rounded-full block"></div>*/}
+                            {/*                     className="block w-3 h-3 rounded-full"></div>*/}
                             {/*            </div>*/}
                             {/*            <div className="ml-2">*/}
                             {/*                <span className="accordion-content-title">{evt.title}</span>*/}
@@ -189,9 +189,9 @@ const CalendarSidebar = (props) => {
                             
                             {/*/!*** Toggle expand / Collapse button ****!/*/}
                             {/*{myCreatedEvent.length > 0 && <div*/}
-                            {/*    className="accordion-li  hover:bg-blue-100 p-1 rounded"*/}
+                            {/*    className="p-1 rounded accordion-li hover:bg-blue-100"*/}
                             {/*    onClick={(e) => handleExpandAccContent(e, 1, myCreatedEvent.length)}>*/}
-                            {/*    <div className="ml-4 flex items-center justify-between">*/}
+                            {/*    <div className="flex items-center justify-between ml-4">*/}
                             {/*        <label htmlFor=""*/}
                             {/*               className="font-medium">*/}
                             {/*            {accItemShowContentLen[1] === 5 ? "Show more" : "Show less"}</label>*/}
@@ -201,15 +201,15 @@ const CalendarSidebar = (props) => {
                             
                             
                             {Object.keys(statusColors).map(status=>(
-                                <div className="flex items-center gap-x-1 mb-1">
+                                <div className="flex items-center mb-1 gap-x-1">
                                     <input onChange={()=>handleChangeFilterEvent(status)} checked={filterEvents.includes(status)} type="checkbox" id={status} name={status}/>
-                                    <label className="text-sm font-normal px-2 rounded py-px text-gray-900 hover:bg-gray-100 capitalize "
+                                    <label className="px-2 py-px text-sm font-normal text-gray-900 capitalize rounded hover:bg-gray-100 "
                                            style={{color : statusColors[status]}}
                                            htmlFor={status}>
                                         {status === "proposedTime" ? "Proposed New Time" : status}
                                     </label>
 
-                                    {/*<label className="text-sm font-normal px-2 rounded py-px text-gray-100 " style={{background: statusColors[status]}} htmlFor={status}>{status}</label>*/}
+                                    {/*<label className="px-2 py-px text-sm font-normal text-gray-100 rounded " style={{background: statusColors[status]}} htmlFor={status}>{status}</label>*/}
                                 </div>
                             ))}
                             
@@ -219,7 +219,7 @@ const CalendarSidebar = (props) => {
 
                     <Accordion.Item dataId={2}
                         header={(isOpen) => (
-                            <div onClick={() => handleToggle(2)} className="accordion-header flex items-center justify-between">
+                            <div onClick={() => handleToggle(2)} className="flex items-center justify-between accordion-header">
                                 <h4 className="">My Events</h4>
                                 {isOpen
                                     ? <BiChevronDown className="text-xs text-gray-500"/>
@@ -231,14 +231,14 @@ const CalendarSidebar = (props) => {
 
                         <div className="accordion-content">
                             {sortByDate(events).slice(0, accItemShowContentLen[2]).map(evt => (
-                                <div className="accordion-li mt-1 " key={evt._id} onClick={()=>handleOpenEventDetailRoute(evt._id)} >
+                                <div className="mt-1 accordion-li " key={evt._id} onClick={()=>handleOpenEventDetailRoute(evt._id)} >
                                     <h4 className="flex items-center">
                                         <div className="col-span-1">
                                             <div style={{background:  colors[evt.eventColor] || statusColors[evt.status]}}
-                                                 className="w-3 h-3 rounded-full block"></div>
+                                                 className="block w-3 h-3 rounded-full"></div>
                                         </div>
                                         <div className="ml-1">
-                                            <span className="accordion-content-title text-sm  px-1 rounded py-px text-gray-700 hover:bg-gray-100">
+                                            <span className="px-1 py-px text-sm text-gray-700 rounded accordion-content-title hover:bg-gray-100">
                                                 {evt.title}
                                             </span>
                                         </div>
@@ -248,9 +248,9 @@ const CalendarSidebar = (props) => {
 
                             {/*** Toggle expand / Collapse button ****/}
                             { events.length > 10 && (
-                                <div className="accordion-li  hover:bg-blue-100 p-1 rounded"
+                                <div className="p-1 rounded accordion-li hover:bg-blue-100"
                                      onClick={(e) => handleExpandAccContent(e, 2, events.length)}>
-                                    <div className="ml-4 flex items-center justify-between">
+                                    <div className="flex items-center justify-between ml-4">
                                         <label htmlFor=""
                                                className="font-medium">
                                             Show {accItemShowContentLen[2] !== events.length ? " more" : " less"}</label>

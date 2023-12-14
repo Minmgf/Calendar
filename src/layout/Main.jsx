@@ -184,10 +184,11 @@ const Main = () => {
             
             {/*<button className='btn mui-btn' onClick={playAudio}>Play</button>*/}
             
-            
+             {/* Duracion toast */}
+
             <ToastContainer
                 position="top-right"
-                autoClose={true}
+                autoClose={1000}
                 newestOnTop={true}
                 closeOnClick
                 rtl={false}
