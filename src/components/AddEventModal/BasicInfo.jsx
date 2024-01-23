@@ -8,7 +8,9 @@ import CalendarContext from "../../context/CalendarContext";
 
 import TimeRange from "../TimeRange";
 import ColorPicker from "../ColorPicker/ColorPicker.jsx";
-import LawyerPicker from "../LawyerPicker/LawyerPicker.jsx"
+import LawyerPicker from "../LawyerPicker/LawyerPicker.jsx";
+import CourtPicker from '../CourtPicker/CourtPicker.jsx';
+import MasterPicker from '../MastersPicker/MastersPicker.jsx';
 import AddNotification from "./AddNotification";
 import useAuthContext from "../../context/useAuthContext.js";
 import RichTextEditor from "../Form/RichTextEditor/RichTextEditor.jsx";
@@ -20,7 +22,6 @@ import {RiseLoader} from "react-spinners";
 const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
     const {
         newEventData: {
-            lawyerEvent,
             invitations,
             agenda,
             title,
@@ -31,7 +32,10 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
             createdBy,
             meetingLink,
             actionItems,
+            eventLawyer,
             eventColor,
+            eventCourt,
+            eventMaster,
             startDate,
             endDate,
             updateEventId
@@ -101,14 +105,6 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
 
                 </div>
 
-
-
-
-
-{/* 
-
-
-
                 <div className="flex items-start mt-3 event-input-field">
                     <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/admin-icon.svg" alt="bell"/>
@@ -116,28 +112,43 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                     <LawyerPicker createdBy={createdBy}
                         updateEventId={updateEventId}
                         auth={authState?.auth || {}}
-                        value={lawyerEvent}
-                        onChange={(selectedLawyer) => handleChange(selectedLawyer, "lawyerEvent")}/>
+                        value={eventLawyer}
+                        onChange={(selectedLawyer) => handleChange(selectedLawyer, "eventLawyer")}/>
 
+                </div>
+
+
+                <div className="flex items-start mt-3 event-input-field">
+                    <div className="w-12 event-label-icon">
+                        {/* <img className="w-5" src="/icons/court-icon.svg" alt="court"/> */}
+                    </div>
+                    <CourtPicker createdBy={createdBy}
+                                updateEventId={updateEventId}
+                                auth={authState?.auth || {}}
+                                value={eventCourt}
+                                onChange={(selectedCourt) => handleChange(selectedCourt, "eventCourt")}/>
+                </div>
+
+                <div className="flex items-start mt-3 event-input-field">
+                    <div className="w-12 event-label-icon">
+                        {/* <img className="w-5" src="/icons/master-icon.svg" alt="master"/> */}
+                    </div>
+                    <MasterPicker createdBy={createdBy}
+                                updateEventId={updateEventId}
+                                auth={authState?.auth || {}}
+                                value={eventMaster}
+                                onChange={(selectedMaster) => handleChange(selectedMaster, "eventMaster")}/>
                 </div>
 
 
 
 
 
- */}
-
-
-
-
-
-
-
-
-                <div className="flex items-start event-input-field ">
+                
+                
+                {/* <div className="flex items-start event-input-field ">
                     <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/users.svg" alt="agenda"/>
-                        {/*<FiUsers className="text-gray-600"/>*/}
                     </div>
 
                     <div className="w-full">
@@ -145,7 +156,6 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                             <span className="text-sm text-gray-600">Add Invitation</span>
                         </div>
 
-                        {/**** selected users ****/}
                         <div onClick={() => setModalId(2)}
                              className="flex flex-wrap items-center mt-1 gap-x-0 users-avatar-list">
                             {invitations.map(user => (
@@ -156,7 +166,11 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                         </div>
                     </div>
 
-                </div>
+                </div> */}
+
+
+
+                
 
                 <div className="flex items-start event-input-field ">
                     <div className="w-12 event-label-icon">
@@ -257,7 +271,7 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                 {/*    </ClickExpand>*/}
                 {/*</div>*/}
 
-                <div className="flex items-start event-input-field ">
+                {/* <div className="flex items-start event-input-field ">
                     <div className="w-12 event-label-icon">
                         <img className="w-5" src="/icons/bell.svg" alt="bell"/>
                     </div>
@@ -272,10 +286,7 @@ const BasicInfo = ({handleChange, setModalId, handleAddEvent, onClose}) => {
                     </ClickExpand>
 
 
-                    {/*<div className="p-2 rounded-md hover:bg-gray-100">*/}
-                    {/*    <span className="text-sm text-gray-600">Add Notification</span>*/}
-                    {/*</div>*/}
-                </div>
+                </div> */}
 
                 <div className="mt-4">
                     <button onClick={handleSaveEvent} className={`btn ${isLoading ? "btn-disable" : "btn-primary"}`}>

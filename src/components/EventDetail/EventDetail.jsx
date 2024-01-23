@@ -2,6 +2,7 @@ import React from 'react';
 import {TiTimes} from "react-icons/all";
 import Modal from "../Modal/Modal";
 import dayjs from "dayjs";
+import {lawyers} from "../LawyerPicker/LawyerPicker"; 
 import {colors} from "../ColorPicker/ColorPicker";
 import statusColors from "../../utils/statusColors";
 import subString from "../../utils/subString.js";
@@ -91,6 +92,11 @@ const EventDetail = ({event, auth, onClose}) => {
 							<label className="text-sm font-medium text-gray-600" htmlFor="">Status</label>
 							<p style={{color:  colors[event.eventColor]|| statusColors[event.status]}} className="uppercase desc-para"  >{event.status}</p>
 						</div>
+
+						<div className="mt-4">
+                            <label className="text-sm font-medium text-gray-600" htmlFor="">Lawyer</label>
+							<p className="desc-para">{event.eventLawyer}</p>
+                        </div>
 
 
 						<div className="mt-4">

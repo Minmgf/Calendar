@@ -32,6 +32,7 @@ export function clickOnEventName(evt, monthIndex, events, setNewEventData) {
             isAllDay = true
         }
 
+        
         setNewEventData(prev => ({
             ...prev,
             title: updatedEvent.title,
@@ -45,7 +46,11 @@ export function clickOnEventName(evt, monthIndex, events, setNewEventData) {
             monthIndex: monthIndex,
             notifications: updatedEvent.notifications || [],
             status: updatedEvent.status,
+            //MINMGF
             eventColor: updatedEvent.eventColor,
+            eventMaster: updatedEvent.eventMaster,
+            eventCourt: updatedEvent.eventCourt,
+            eventLawyer: updatedEvent.eventLawyer,
             createdBy: updatedEvent?.createdBy || null,
             meetingLink: updatedEvent.meetingLink || "",
             agenda: updatedEvent.agenda || updatedEvent.description || "",

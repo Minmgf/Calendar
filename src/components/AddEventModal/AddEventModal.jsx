@@ -94,8 +94,10 @@ const AddEventModal = () => {
         notifications: newEventData.notifications,
         meetingLink: newEventData.meetingLink,
         status: "pending",
-        lawyerEvent: newEventData.lawyerEvent,
+        eventLawyer: newEventData.eventLawyer,
         eventColor: newEventData.eventColor,
+        eventCourt: newEventData.eventCourt,
+        eventMaster: newEventData.eventMaster,
         attachments: null,
         invitations: invitationUsers
       };

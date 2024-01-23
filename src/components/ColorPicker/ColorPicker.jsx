@@ -38,21 +38,15 @@ const ColorPicker = ({onChange, createdBy, value, auth, updateEventId}) => {
         <div className="flex items-center">
 
             {updateEventId ? (
-                <div className="flex items-center gap-x-1">
-                    <div className='img-box-4 '>
-                    </div>
-                    <h4 className="mr-2 text-sm text-gray-600 ">
-                        {fullName(createdBy)} (organizer {createdBy?._id  === auth?._id ? "you" : ""})
+                <div className="flex  gap-x-1">
+                    <h4 className="text-sm text-gray-600 ">
+                    Color:
                     </h4>
                 </div>
             ) : (
                 <div className="flex items-center gap-x-1">
-                    <div className='img-box-4 '>
-                        <img className="mr-1"
-                             src={auth?.avatar || "/placeholder.jpg"} alt=""/>
-                    </div>
                     <h4 className="mr-2 text-sm text-gray-600 ">
-                        {fullName(auth)} (organizer)
+                        Color:
                     </h4>
                 </div>
             )}

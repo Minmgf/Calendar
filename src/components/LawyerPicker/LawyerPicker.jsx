@@ -7,42 +7,35 @@ export const lawyers = {
     lawyer1: "Juan Pérez",
     lawyer2: "Maria López",
     lawyer3: "Carlos Gómez",
-    lawyer4: "1",
-    lawyer5: "2",
-    lawyer6: "3",
-    lawyer7: "4",
-    lawyer8: "5",
-    lawyer9: "6",
-    lawyer10: "7",
-    lawyer11: "8",
-    lawyer12: "9",
 }
 
 const LawyerPicker = ({ onChange, createdBy, value, auth, updateEventId }) => {
-    const [selectedLawyer, setSelectedLawyer] = useState("lawyer1");
+    const [selectedLawyer, setSelectedLawyer] = useState("lawyer1")
 
-    function handleChangeLawyer(lawyer) {
-        setSelectedLawyer(lawyer);
-        onChange(lawyer);
+    function handleChangeLawyer(selectedLawyer){
+        setSelectedLawyer(selectedLawyer);
+        onChange(selectedLawyer);
     }
 
     useEffect(() => {
         if (value) {
             setSelectedLawyer(value);
         }
-    }, [value]);
+    }, [value])
 
     return (
         <div className="flex items-center">
             {updateEventId ? (
                 <div className="flex items-center gap-x-1">
-                    <h4 className="mx-2 text-sm text-gray-600">
+                    <h4 className="mr-2 text-sm text-gray-600 ">
                         Lawyer:
                     </h4>
                 </div>
             ) : (
-                <div className="flex items-center text-sm text-gray-600 gap-x-1">
-                    Lawyer:
+                <div className="flex items-center gap-x-1">
+                    <h4 className="mr-2 text-sm text-gray-600 ">
+                        Lawyer:
+                    </h4>
                 </div>
             )}
 
@@ -53,17 +46,16 @@ const LawyerPicker = ({ onChange, createdBy, value, auth, updateEventId }) => {
                 inputBg="py-1 rounded"
                 dropdownClass={"lawyer-picker-dropdown"}
                 withBg={false}
-
                 render={(onChange) => (
-                    <div className="grid grid-cols-1 gap-2 px-2">
-                        {Object.entries(lawyers).map(([key, name]) => (
-                            <span key={key} onClick={() => onChange(key)} className="block cursor-pointer">
-                                {name}
+                    <div className="grid grid-cols-1 gap-2">
+                        {Object.keys(lawyers).map(lawyerKey => (
+                            <span key={lawyerKey} onClick={() => onChange(lawyerKey)}
+                                  className="block cursor-pointer">
+                                {lawyers[lawyerKey]}
                             </span>
                         ))}
                     </div>
                 )}
-                
                 renderPlaceholderValue={(val) => (
                     <div className="flex items-center">
                         <span className="mr-1">{lawyers[val]}</span>
