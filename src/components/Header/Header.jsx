@@ -116,7 +116,7 @@ const Header = () => {
                 <Link to="/">
                     <div className="flex items-center gap-x-1 ">
                         <img className="w-10"
-                             src="https://inmigracionaldia.com/hubfs/raw_assets/public/website-theme/images/Logo-iad.svg"
+                             src=""
                              alt=""/>
                         <h4 className="hidden text-sm font-bold md:block">Calendar</h4>
                     </div>
